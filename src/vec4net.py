@@ -6,7 +6,8 @@
 import numpy as np
 from gensim.models import Word2Vec
 
-MODEL = Word2Vec.load('100features_10context_7minwords.tmp')
+# Load Word2Vec model from file, use your model's result or use mine
+MODEL = Word2Vec.load('../var/100features_10context_7minwords.vec')
 WINDOW = 7
 SHAPE = MODEL.syn0.shape[1]
 
@@ -44,9 +45,11 @@ def iob_map(iob):
     return np.asarray(d[iob]).reshape((3,1))
 
 def iob_vector(iob):
+    "Make a vector for iob list"
     return map(iob_map, iob)
 
 def make_tuple(context_vector, iob_vector):
+    "Pairing sentences and iob tag"
     return list(zip(context_vector, iob_vector))
 
 def make_vec(sen):

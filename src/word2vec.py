@@ -1,9 +1,11 @@
 
 ###############################################################################
 # Training Word2Vec to get word embedding vector
+#
+# Some code are taken from:
+# https://github.com/wendykan/DeepLearningMovies 
 ###############################################################################
 
-import json
 import re
 import logging
 from gensim.models import Word2Vec
@@ -14,11 +16,7 @@ def strip_tags(html):
     "Strip html tags"
     return BeautifulSoup(html).get_text(' ')
 
-def get_stops():
-    "Get stop words from files"
-    return json.load(open('stops.json'))
-
-def text_to_token(text, remove_stopwords=False):
+def text_to_token(text):
     "Get list of token for training"
     # Strip HTML
     text = strip_tags(text)
@@ -29,18 +27,14 @@ def text_to_token(text, remove_stopwords=False):
     # Don't remember the number
     for i in range(len(token)):
         token[i] = len(token[i])*'DIGIT' if token[i].isdigit() else token[i]
-    # Remove stopwords if must
-    if remove_stopwords:
-        stops = set(get_stops())
-        token = [w for w in token if not w in stops]
     return token
 
-def read_sentences(fp='../data/VNESEcorpus.txt.tmp'):
+def read_sentences(fp='../dat/VNESEcorpus.txt'):
     "Read and split token from text file"
     sentences = []
     with open(fp, 'r') as f:
         for line in f:
-            if '|' not in line: # Remove menu items
+            if '|' not in line: # Remove menu items in some newspaper
                 sentences.append(text_to_token(line.strip()))
     return sentences
 
@@ -64,7 +58,7 @@ if __name__ == '__main__':
                 size=num_features, min_count = min_word_count, \
                 window = context, sample = downsampling, seed=1)
     model.init_sims(replace=True)
-    model_name = "{}features_{}context_{}minwords.tmp".format(
+    model_name = "../var/{}features_{}context_{}minwords.vec".format(
         num_features, context, min_word_count
     )
     model.save(model_name)

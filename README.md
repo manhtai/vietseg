@@ -11,7 +11,7 @@ A Vietnamese Word Segmentation program using Neural Network
 
 - Put a text file into `src` folder for segmenting, here I use `input.txt`
 
-- Run `python3 segment.py input.txt output.txt`
+- Run `python3 vietseg.py input.txt output.txt`
 
 - Now you got `output.txt` which is segmented
 
@@ -31,7 +31,7 @@ using Word2Vec library (Word2Vec itself is a neural network)
 
 - Run `python3 learn.py` to really train the segmenting model
 
-- Now you can use `python3 segment.py` as described above
+- Now you can use `python3 vietseg.py` as described above
 
 
 ## Data for training model

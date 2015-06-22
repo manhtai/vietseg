@@ -1,20 +1,20 @@
 
 ###############################################################################
-# Build the neural network classification model
+# Learn the neural network parameters
 ###############################################################################
 
 import os
 import re
 import codecs
 
-from input2vec import make_list, WINDOW, SHAPE
+from vec4net import make_list, WINDOW, SHAPE
 SIZE = WINDOW*SHAPE
 
 import network
 
 def get_files(ft='train'):
     "Get train/test file list for further process"
-    path_data = '../data/'
+    path_data = '../dat/'
     tmp_lst = os.listdir(path_data)
     file_lst = []
     for item in tmp_lst:
@@ -74,7 +74,7 @@ if __name__ == '__main__':
     for RUN in range(5):
         net = network.Network([SIZE, HIDDEN, 3])
         training_data, test_data = make_train_test(RUN)
-        # training_data = training_data[:1000]; test_data = test_data[:100]
+        training_data = training_data[:1000]; test_data = test_data[:100]
         acc = net.SGD(training_data, EPOCHS, MINI_BATCH_SIZE, ETA, 
                       lmbda=LAMBDA,
                       evaluation_data=test_data,
@@ -82,9 +82,9 @@ if __name__ == '__main__':
         # Take the last (not best) accuracy and length of the test set
         accuracy[RUN] = (acc[-1], len(test_data))
         # Save the model for later use
-        net.save('{}hidden-{}epochs-{}batch-{}eta-{}lambda-{}window-{}shape-{}run.json'.\
+        net.save('../var/{}hidden-{}epochs-{}batch-{}eta-{}lambda-{}window-{}shape-{}run.net'.\
             format(HIDDEN, EPOCHS, MINI_BATCH_SIZE, ETA, LAMBDA, WINDOW, SHAPE, RUN))
-    # Now we display the result
+    # Display the result
     print("===================")
     print("FINAL RESULTS:")
     print("===================")
