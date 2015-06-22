@@ -3,6 +3,7 @@
 # Learn the neural network parameters
 ###############################################################################
 
+import sys
 import os
 import re
 import codecs
@@ -62,6 +63,7 @@ def make_train_test(RUN):
         test += list(make_list(s))
     return train, test
 
+
 # Network learning, this is the awesome part
 if __name__ == '__main__':
     HIDDEN = 30
@@ -70,11 +72,35 @@ if __name__ == '__main__':
     ETA = 0.5
     LAMBDA = 5.0
     accuracy = {}
-    # We run 5 cross-validation and take the average accuracy
-    for RUN in range(5):
+    n_args = len(sys.argv)
+    if n_args == 1:
+        a = 0
+        b = 5
+    elif n_args ==  2:
+        a = int(sys.argv[1])
+        b = a+1
+    else:
+        a = int(sys.argv[1])
+        b = int(sys.argv[2]) + 1
+    try:
+        assert 0 <= a < b <= 5
+    except:
+        print('''
+              Usage: python3 learn.py [from] [to]
+              ===================================
+              * [from] and [to] is optional, default to 0 and 4, i.e. run full
+              5 cross-validation from 0 to 4
+              * If specified, [from] and [to] must meet the inequility
+              0 <= [from] < [to] <= 4
+              ''')
+        sys.exit(1)
+    # We run a to b cross-validation and take the average accuracy
+    ranges = range(a, b)
+    for RUN in ranges:
+        print('Run cross-validation #{}'.format(RUN))
         net = network.Network([SIZE, HIDDEN, 3])
         training_data, test_data = make_train_test(RUN)
-        training_data = training_data[:1000]; test_data = test_data[:100]
+        # training_data = training_data[:1000]; test_data = test_data[:100]
         acc = net.SGD(training_data, EPOCHS, MINI_BATCH_SIZE, ETA, 
                       lmbda=LAMBDA,
                       evaluation_data=test_data,
@@ -88,12 +114,12 @@ if __name__ == '__main__':
     print("===================")
     print("FINAL RESULTS:")
     print("===================")
-    for i in range(5):
+    for i in ranges:
         print("Accuracy on CV #{0} is {1:.2f} %"\
               .format(i, accuracy[i][0]/accuracy[i][1]*100))
     print("===================")
-    a = sum([accuracy[i][0] for i in range(5)])
-    b = sum([accuracy[i][1] for i in range(5)])
+    a = sum([accuracy[i][0] for i in ranges])
+    b = sum([accuracy[i][1] for i in ranges])
     print("Average accuracy: {:.2f} %".format(a/b*100))
 
 
