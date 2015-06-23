@@ -18,23 +18,23 @@ Python3, and Python2 won't work on it, you can fix this, of course)
 
 ## Performance:
 
-The test uses data from [JVnSegmenter][1]. See below.
+Precision, Recall, and F1-measure in the same data as described 
+in [this paper][10]:
 
-Notice I calculate precision rate using IOB tagging accuracy, not word 
-segmenting accuracy, so BEWARE when comparing with other programs.
+    RESULT:
+    ===================
+    Run 0: P = 0.9156, R = 0.9294, F = 0.9225
+    Run 1: P = 0.9015, R = 0.9183, F = 0.9099
+    Run 2: P = 0.9189, R = 0.9327, F = 0.9258
+    Run 3: P = 0.9208, R = 0.9339, F = 0.9273
+    Run 4: P = 0.9166, R = 0.9295, F = 0.9230
+    ===================
+    Avg.   P = 0.9147, R = 0.9288, F = 0.9217
 
-Here is the result after 5 cross-validation runs: 
 
-     ===================
-     FINAL RESULTS:
-     ===================
-     Accuracy on CV #0 is 94.34 %
-     Accuracy on CV #1 is 94.88 %
-     Accuracy on CV #2 is 94.81 %
-     Accuracy on CV #3 is 95.09 %
-     Accuracy on CV #4 is 94.59 %
-     ===================
-     Average accuracy: 94.74 %
+And here is the best performance in the [paper][10]:
+
+    P = 94.00, R = 94.45, F = 94.23
 
 The program use some random shuffers, so your result may not be the same 
 as mine.
@@ -49,6 +49,8 @@ as mine.
 using Word2Vec library (Word2Vec itself is a neural network)
 
 - Run `python3 learn.py` to really train the segmenting model
+
+- Run `python3 performace.py` for examining the peformance of the model
 
 - Now you can use `python3 vietseg.py <input file> <output file>` as described above
 
@@ -82,6 +84,7 @@ View the source code for detail.
 - [JVnSegmenter][1]: Java
 - [vnTokenizer][6]: Java
 - [Dongdu][7]: C++
+- [Roy\_VnTokenizer][11]: Python
 - [VLSP][8]: PHP?
 
 ## Last words:
@@ -98,6 +101,8 @@ View the source code for detail.
 [7]: https://github.com/rockkhuya/DongDu
 [8]: http://vlsp.vietlp.org:8080/demo/?page=seg_pos_chunk
 [9]: http://vlsp.vietlp.org:8080/demo/?page=resources
+[11]: https://github.com/roy-a/Roy_VnTokenizer
+[10]: http://aclweb.org/anthology/Y/Y06/Y06-1028.pdf
 
 
 

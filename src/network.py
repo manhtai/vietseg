@@ -16,6 +16,7 @@ import random
 import sys
 
 import numpy as np
+from statistics import mean
 
 #### Define the cross-entropy cost functions
 class CrossEntropyCost:
@@ -109,11 +110,12 @@ class Network():
             print("Epoch %s training complete" % j)
             if monitor_evaluation_accuracy:
                 accuracy = self.accuracy(evaluation_data)
-                # Decrease eta by half when having no impoving in accuracy
                 print("Accuracy on evaluation data: {0} / {1} <=> {2:.2f} %".\
                       format(accuracy, n_data, accuracy/n_data*100)
                 )
-                if evaluation_accuracy and accuracy <= evaluation_accuracy[-1]:
+                # Decrease eta by half when having no impoving in 3 loops
+                if len(evaluation_accuracy) > 3 and \
+                        accuracy <= mean(evaluation_accuracy[-3:]):
                     eta /= 2
                     print("ETA now is {}".format(eta))
                 evaluation_accuracy.append(accuracy)

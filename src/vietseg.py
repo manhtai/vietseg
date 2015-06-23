@@ -10,7 +10,7 @@ from vec4net import make_vec
 import numpy as np
 
 # Replace this with your model's result
-JSON = '../var/60hidden-30epochs-10batch-0.5eta-5.0lambda-7window-100shape-0run.net'
+JSON = '../var/30hidden-30epochs-10batch-0.5eta-5.0lambda-7window-100shape-3run.net'
 net = network.load(JSON)
 
 
