@@ -7,5 +7,4 @@ Hiện , máy chủ DNS của họ nhận 30 tỷ yêu_cầu mỗi_ngày , gấp
 VeriSign phải khởi_động dự_án mang tên Titan để mở_rộng dung_lượng của hệ_thống , đáp ứng được 4 nghìn tỷ_thắc_mắc/ngày vào năm 2010 .
 Tăng dung_lượng máy_chủ cũng là một biện_pháp đối phó với nguy_cơ tấn_công từ chối dịch_vụ .
 Nếu để xảy_ra tình_trạng này , toàn bộ các trang mà VeriSign quản_lý sẽ `` chết đứng '' .
-Nghiên_cứu cho thấy những người khứu_giác kém có nguy_cơ chết sớm hơn người bình_thường.
-Nói cách khác, khả_năng ngửi_mùi không chính_xác_chính là lời cảnh_báo sớm cho cái chết sắp đến.
+T. H. ( theo AP ) T. H. Nhân

@@ -11,7 +11,8 @@ A Vietnamese Word Segmentation program using Neural Network
 
 - Put a text file into `src` folder for segmenting, here I use `input.txt`
 
-- Run `python3 vietseg.py input.txt output.txt`
+- Run `python3 vietseg.py input.txt output.txt` (Yeah, this program use
+Python3, and Python2 won't work on it, you can fix this, of course)
 
 - Now you got `output.txt` which is segmented
 
@@ -67,7 +68,7 @@ using Word2Vec library (Word2Vec itself is a neural network)
 
 - Speed up the network
 - Use a professional deep learning package (Theano, Caffe, etc)
-- Train the model with bigger corpus and training data file, like [this][9]
+- Train the model with bigger corpus and training data file, like [these][9]
 - Deal with uppercase characters
 - Build a web app
 
